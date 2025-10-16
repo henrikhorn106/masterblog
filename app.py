@@ -27,8 +27,8 @@ def add():
 
         post = {
             'id': next_id,
-            'title': title,
             'author': author,
+            'title': title,
             'content': content
         }
 
@@ -40,6 +40,24 @@ def add():
         return redirect(url_for('index'))
 
     return render_template('add.html')
+
+
+@app.route('/delete/<int:post_id>')
+def delete(post_id):
+    with open('blog_posts.json', 'r') as f:
+        blog_posts = json.load(f)
+
+    list_index = 0
+    for index, post in enumerate(blog_posts):
+        if post['id'] == post_id:
+            list_index = index
+
+    blog_posts.pop(list_index)
+
+    with open('blog_posts.json', 'w') as f:
+        json.dump(blog_posts, f)
+
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
