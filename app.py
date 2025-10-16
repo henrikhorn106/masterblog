@@ -15,9 +15,9 @@ def index():
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     if request.method == 'POST':
-        title = request.form['title']
-        author = request.form['author']
-        content = request.form['content']
+        title = request.form.get('title')
+        author = request.form.get('author')
+        content = request.form.get('content')
 
         with open('blog_posts.json', 'r') as f:
             blog_posts = json.load(f)
