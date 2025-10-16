@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Welcome to My Flask Blog!</h1>
+
     {% for post in posts %}
     <div class="post">
         <h2>{{ post['title'] }}</h2>
@@ -15,5 +16,7 @@
         <p>{{ post['content'] }}</p>
     </div>
     {% endfor %}
+
+    <button onclick="window.location.href='/add';">Create a New Post</button>
 </body>
 </html>
